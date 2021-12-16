@@ -1,0 +1,36 @@
+// ion-toolbar {
+//   --background: #eaeaf0!important;
+//   color: #404040;      
+//   }
+
+// ion-content {      
+//   --background: #eaeaf0;      
+// }
+
+// ion-list {
+//     background: #000!important;
+// }
+// ion-item {
+//     background: #000!important;
+// }
+
+.contenedor .titulo {
+    text-transform: lowercase;    
+    margin-bottom: 0px; 
+}
+.contenedor .titulo:first-letter {
+    text-transform: uppercase;
+} 
+.contenedor .description {    
+    text-transform: lowercase;  
+    margin-bottom: 0px; 
+    font-size: 16px!important;
+}
+.contenedor .description:first-letter {    
+    text-transform: uppercase;
+}
+
+.precio {
+    font-weight: 400;
+    color: #F3429B!important;
+}

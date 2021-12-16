@@ -1,0 +1,20 @@
+ion-content {
+      // position: absolute;
+      --background: #eaeaf0;
+      // --padding-bottom: 50px;
+    }
+
+    ion-toolbar {
+  --background: #eaeaf0!important;
+  color: #404040;  
+    ion-icon {
+      font-size: 25px;
+    }
+  }
+
+  #alert{
+      background-image: -webkit-linear-gradient(left, #0250c5, #d43f8d); /* Chrome, Safari versiones relativamente modernas */
+    background-image:    -moz-linear-gradient(left, #0250c5, #d43f8d); /* Firefox versiones relativamente modernas*/
+    background-image:      -o-linear-gradient(left, #0250c5, #d43f8d); /* Opera versiones relativamente modernas*/
+    background-image:         linear-gradient(to left, #0250c5, #d43f8d); /* Chrome, Firefox, IE, Opera versiones actuales */    
+}

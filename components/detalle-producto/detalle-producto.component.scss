@@ -1,0 +1,146 @@
+ion-toolbar {
+    ion-icon {
+      font-size: 25px;
+    }
+  }
+   
+  ion-content {
+      position: absolute;
+      --background: #f1f1f1;
+      --padding-bottom: 50px;
+    }
+   
+  .light-bg {
+      background: #ffffff;
+      z-index: 10;
+  }
+   
+  .header-image {
+      background-repeat: no-repeat;
+      background-position: center; 
+      background-size: cover;
+      height: 30vh;
+      will-change: transform;
+  }
+
+  #nombre {
+      font-size: 17px;
+      padding: 8px 15px 8px 15px; 
+      color: black;      
+  }
+  
+
+  #cont {
+    background-image: -webkit-linear-gradient(left, #0250c5, #d43f8d); /* Chrome, Safari versiones relativamente modernas */
+    background-image:    -moz-linear-gradient(left, #0250c5, #d43f8d); /* Firefox versiones relativamente modernas*/
+    background-image:      -o-linear-gradient(left, #0250c5, #d43f8d); /* Opera versiones relativamente modernas*/
+    background-image:         linear-gradient(to left, #0250c5, #d43f8d); /* Chrome, Firefox, IE, Opera versiones actuales */    
+    padding-left: 20px;
+    margin-top: -16px;
+    padding-bottom: 0px!important;
+    padding-top: 0px;
+    color: floralwhite;
+  }
+
+  #h3 {
+    padding-top: 5px!important;
+  }
+
+  #p {
+    margin-top: -8px!important;
+    padding-bottom: 3px!important;
+  }
+
+  #boton {
+    background-image: -webkit-linear-gradient(left, #F3429B, #0188cc); /* Chrome, Safari versiones relativamente modernas */
+    background-image:    -moz-linear-gradient(left, #F3429B, #0188cc); /* Firefox versiones relativamente modernas*/
+    background-image:      -o-linear-gradient(left, #F3429B, #0188cc); /* Opera versiones relativamente modernas*/
+    background-image:         linear-gradient(to left, #F3429B, #0188cc); /* Chrome, Firefox, IE, Opera versiones actuales */
+  }
+
+  .chip-category {
+    margin: 10px!important;
+    display: contents;
+  }
+
+
+
+
+
+
+  // ACONDEON 
+  label p {
+    margin: 0;    
+  }
+  label p::before {
+    content: 'Q: ';
+  }
+    .tab-group {
+      // margin: 3em auto;
+      max-width: 503mm;
+      width: 100%;
+    }
+    .tab {
+      position: relative;
+      width: 100%;      
+    }
+
+    .tab input {
+      position: absolute;
+      left: 300px;
+      top: 18px;
+      // opacity: 0;
+
+    }
+
+    .tab label {
+      background: #ffffff;
+      color: #000000;
+      display: block;
+      font-weight: bolder;
+      line-height: 3;
+      padding-left: .5em;
+      // margin-bottom: .5em; 
+      // border: 2px dashed #eeeeee;
+    }
+
+    .tap input:focus + label,
+    .tap label:hover {
+      background-color: #85d8ce!important;
+      color: #ffffff!important;
+      transition: .3s!important;
+    }
+    .tab-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: all .5s;
+    }
+
+    .tab-content p {
+      margin: 1em 0;
+      margin-left: 2em;      
+    }
+    .tab input:checked ~ .tab-content {
+      max-height: 100%;
+    }
+
+    #cantidad {
+        margin-right: 10px!important;
+        --padding-top: 10px!important;
+        --padding-end: 10px!important;
+        --padding-bottom: 10px!important;
+        --padding-start: 10px!important;
+        border-radius: 50%!important;
+    }
+    #number {
+        font-size: 9px;
+        /*padding-left: 4px;*/
+        --padding-top: 4px;
+        --padding-end: 5px;
+        --padding-bottom: 4px;
+        --padding-start: 5px;
+        border-radius: 50%;
+        position: absolute;
+        margin-left: -15px;
+        margin-top: -8px;
+    }

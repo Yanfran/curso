@@ -1,0 +1,21 @@
+ion-toolbar{
+  --background: #eaeaf0!important;
+  color: #64646b;  
+  --border-width: -1px;
+  --border-color: #eaeaf0;
+} 
+ion-content {
+  --background: #eaeaf0!important;
+}
+#alert{
+	background-image: -webkit-linear-gradient(left, #0250c5, #d43f8d); /* Chrome, Safari versiones relativamente modernas */
+    background-image:    -moz-linear-gradient(left, #0250c5, #d43f8d); /* Firefox versiones relativamente modernas*/
+    background-image:      -o-linear-gradient(left, #0250c5, #d43f8d); /* Opera versiones relativamente modernas*/
+    background-image:         linear-gradient(to left, #0250c5, #d43f8d); /* Chrome, Firefox, IE, Opera versiones actuales */    
+}
+#button{
+	background-image: -webkit-linear-gradient(left, #0250c5, #d43f8d); /* Chrome, Safari versiones relativamente modernas */
+    background-image:    -moz-linear-gradient(left, #0250c5, #d43f8d); /* Firefox versiones relativamente modernas*/
+    background-image:      -o-linear-gradient(left, #0250c5, #d43f8d); /* Opera versiones relativamente modernas*/
+   background-image:         linear-gradient(to left, #0250c5, #d43f8d); /* Chrome, Firefox, IE, Opera versiones actuales */    
+}

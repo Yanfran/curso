@@ -1,0 +1,226 @@
+  <!-- <app-filter-menu></app-filter-menu>
+<ion-router-outlet id="filter"></ion-router-outlet> -->
+
+<ion-content class="ion-no-padding" color="fondo">  
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <!-- <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" pullFactor="0.8" pullMin="60" pullMax="120">
+    <ion-refresher-content></ion-refresher-content>    
+  </ion-refresher> -->
+  
+
+  <ion-row class="info-row" #hideheader>  
+    <ion-toolbar>
+        <ion-buttons slot="start">
+          <!-- <ion-menu-button id="menuPrincipal"></ion-menu-button> -->
+          <ion-button (click)="onClick()">            
+              <ion-icon slot="icon-only" name="menu"></ion-icon>            
+          </ion-button>
+        </ion-buttons>     
+
+        <ion-searchbar debounce="500" [(ngModel)]="searchQuery" (search)="onSearch($event)" placeholder="Buscar..."></ion-searchbar>   
+
+        <!-- <ion-button style="margin-inline: -15px!important;" fill="clear"  slot="end" (click)="openLogin(login)">
+          <ion-icon style="color:#4facfe!important" name="person-outline" slot="icon-only"></ion-icon>
+        </ion-button>   -->
+
+        <ion-button slot="end" expand="block" fill="clear" (click)="openEnd()">
+          <ion-icon style="color:#4facfe!important" name="options-outline" slot="icon-only"></ion-icon>
+        </ion-button>
+
+        <ion-badge id="cantidad" color="secondary" slot="end">
+          <div>
+            <ion-icon id="cart" name="cart-outline"></ion-icon>
+            <ion-badge id="number" color="warning">{{ cuentaCarro  }}</ion-badge>
+          </div>
+        </ion-badge>
+
+    </ion-toolbar>
+  </ion-row>      
+  
+      
+    <ion-slides *ngIf="contentLoadedC" [options]="catSlideOpts" #slideWithNav> 
+      <ion-slide class="categorias" *ngFor="let category of categories" (click)="openCategoryPage(category)">
+        <img [src]="category.image?.src" alt="{{ category.name }}">        
+          <p class="cat-name ">
+            <span [innerHTML]="category.name.substr(0, 8) + '...'"></span>            
+          </p>                
+      </ion-slide>
+    </ion-slides>     
+    
+    
+
+    <!-- Skeleton -->
+    <ion-slides *ngIf="!contentLoadedC" [options]="catSlideOpts" #slideWithNav>
+      <ion-slide class="categorias" *ngFor="let category of [].constructor(10)">        
+          <ion-avatar>
+            <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+          </ion-avatar>          
+      </ion-slide>
+    </ion-slides> 
+    <!-- End Skeleton -->
+
+  <ion-slides [options]="highlightSlideOpts">
+    <ion-slide *ngFor="let number of [111,222]">
+      <img src="./assets/images/{{number}}.png" />
+    </ion-slide>
+  </ion-slides>
+  
+  
+  <ion-card *ngIf="contentLoadedD" id="new-fondo">
+    <div class="ion-text-center">      
+      <p id="titulo"><ion-icon class="icon" name="gift-outline"></ion-icon> PRODUCTOS DESTACADOS</p>
+    </div>     
+    <ion-slides class="new" [options]="featuredSlideOpts">
+      <ion-slide *ngFor="let product of products" class="featured-slide" (click)="openProductPage(product)">      
+          <img *ngIf="product.images.length != 0" [src]="product.images[0].src" style="width: 70px!important; height: 70px!important;" class="slider-destacados">           
+          <ion-chip class="cat ion-text-center" >
+          <p style="font-size: 12px; font-weight: 400; color: white; margin: inherit;">{{ product.weight }}Kg</p>
+          </ion-chip >
+          <p style="font-size: 12px; font-weight: 700; color: black; margin-top: 0px;">$ {{ product.price }}</p>
+      </ion-slide>
+    </ion-slides>
+  </ion-card>
+
+  <!-- Skeleton -->
+  <ion-card *ngIf="!contentLoadedD" id="new-fondo">
+    <div class="ion-text-center">      
+      <p id="titulo"><ion-icon class="icon" name="gift-outline"></ion-icon> PRODUCTOS DESTACADOS</p>
+    </div>     
+    <ion-slides class="new" [options]="featuredSlideOpts">
+      <ion-slide *ngFor="let product of [].constructor(10)" class="featured-slide">                
+          <ion-thumbnail slot="start">
+            <ion-skeleton-text animated style="width: 60px; height: 60px"></ion-skeleton-text>          
+          </ion-thumbnail>
+          
+          <ion-skeleton-text animated style="width: 50%; margin-top:15px; text-align: center;"></ion-skeleton-text>     
+      </ion-slide>
+    </ion-slides>
+  </ion-card>
+  <!-- End Skeleton -->
+
+
+
+
+  <!-- Skeleton -->
+  <div id="container" *ngIf="!contentLoaded">
+    <ion-card *ngFor="let product of [].constructor(10)" class="ion-text-wrap">        
+      <ion-item>
+        <ion-thumbnail style="width: 100%; height: 60px;">
+          <!-- <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text> -->
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-thumbnail>
+      </ion-item>
+      
+      <ion-card-content id="container-superior">
+        <p> <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text> </p>
+        <p>
+          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>          
+        </p>
+      </ion-card-content>
+    </ion-card>
+  </div>    
+  <!-- End Skeleton -->
+
+
+  <div *ngIf="contentLoaded">
+
+    <ion-grid>
+      <ion-row>
+        <ion-col size="4" *ngFor="let product of moreProducts">
+
+          <ion-card class="ion-text-wrap card" (click)="openProductPage(product)">
+            <div id="shape"><span>{{ product.weight }}Kg</span></div>
+            <img *ngIf="product.images.length != 0" [src]="product.images[0].src" width="100%" height="90" />            
+            <ion-card-header id="card-header">
+              <ion-card-subtitle><span id="price" [innerHTML]="product.price_html"></span></ion-card-subtitle>
+              <!-- <ion-card-title><span [innerHTML]="product.short_description.substr(0, 50) + '...'"></span></ion-card-title> -->
+            </ion-card-header>
+
+            <ion-card-content id="card-content">
+              <p id="ellipsis3" class="overflow-ellipsis"> {{ product.name }} </p>
+            </ion-card-content>
+          </ion-card>
+
+        </ion-col>
+      </ion-row>  
+    </ion-grid>
+
+  </div>
+
+
+  
+  <!-- <div id="container" *ngIf="contentLoaded">
+    <ion-card *ngFor="let product of moreProducts" class="ion-text-wrap" (click)="openProductPage(product)">
+      <img *ngIf="product.images.length != 0" [src]="product.images[0].src" (click)="openProductPage(product)" />
+      
+      <ion-card-content id="container-superior" (click)="openProductPage(product)">
+        <p class="ellipsis2"> {{ product.name }} </p>
+        <p>
+          <span [innerHTML]="product.short_description.substr(0, 50) + '...'"></span>
+          <span [innerHTML]="product.price_html"></span>
+        </p>
+      </ion-card-content>
+    </ion-card>
+  </div> -->     
+
+  <ion-infinite-scroll (ionInfinite)="loadMoreProducts($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+
+  <ion-menu slot="fixed"  side="end" contentId="openEnd" class="my-custom-menu">
+    <ion-header>
+      <ion-toolbar style="background: gainsboro;"> <!--id="filtrar"-->
+        <ion-title>Todas las categorias</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="closeMenu()">
+            <ion-icon slot="icon-only" name="close"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+      
+    
+      <ion-list *ngFor="let category of categories2">
+            <ion-menu-toggle>
+              <ion-item *ngIf="category.parent==0 && category.count > 0" class="ion-text-wrap" (click)="openCategoryPage(category)">
+                <!-- <ion-thumbnail slot="start">
+                  <ion-img [src]="category.image?.src" alt="{{ category.name }}"></ion-img>
+                </ion-thumbnail>               -->
+                <ion-icon name="{{ (category.icon) ? category.icon : 'arrow-forward'}}" slot="start" size="large"></ion-icon>
+                <ion-label> {{ category.name }} </ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+            
+    
+            <!-- Optional Subcategories Display -->
+            
+            <ion-menu-toggle>
+              <ion-item *ngIf="category.parent!=0" class="ion-text-wrap" (click)="openCategoryPage(category)">
+                <ion-icon name="arrow-forward" slot="start" size="large"></ion-icon>
+                <ion-label> {{ category.name }} </ion-label>
+      
+              </ion-item>
+            </ion-menu-toggle>
+            
+      </ion-list>
+      <ion-infinite-scroll (ionInfinite)="loadMoreCategorias($event)">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+    </ion-content>
+
+  </ion-menu>
+  <ion-router-outlet id="openEnd"></ion-router-outlet>
+
+
+</ion-content>

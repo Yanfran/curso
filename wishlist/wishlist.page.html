@@ -1,0 +1,152 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      
+
+      <ion-button (click)="close()">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>    
+
+    </ion-buttons>
+    <ion-title>Productos Favoritos</ion-title>
+
+    <!-- <ion-badge id="cantidadD" color="secondary" slot="end" (click)="openPage()">
+      <div>
+        <ion-icon id="cartD" name="cart-outline"></ion-icon>
+        <ion-badge id="numberD" color="warning">{{ cuentaCarro  }}</ion-badge>
+      </div>
+    </ion-badge> -->
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <!-- fab placed to the bottom end -->
+    <!-- <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button>
+        <ion-icon name="arrow-forward-circle"></ion-icon>
+      </ion-fab-button>
+    </ion-fab> -->
+
+
+  <ion-card id="alert" [hidden]="!showEmptyCartMessage">
+    <ion-grid>
+      <!-- <ion-row>
+        <ion-col>¡Echa un vistazo ahora a estos artículos geniales!</ion-col>
+      </ion-row> -->
+      <ion-row [hidden]="!showEmptyCartMessage">
+        <ion-col style="color: #ffffff;">¡No hay productos en su cesta!</ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+
+  <div *ngFor="let item of cartItems; let i = index">
+    <div lines="none" class="ion-no-padding" style="margin-top: 20px; display: inline-flex;">      
+      <!-- <ion-thumbnail slot="start"> -->
+       <ion-img *ngIf="item.product.images.length != 0" [src]="item.product.images[0].src" style="width: 270px; height: 270px; margin-right: 20px;" ></ion-img>
+      <!-- </ion-thumbnail> -->
+      
+      <div style="margin-letf: 10px;">
+
+        <h2 style="font-size: 14px!important;">{{ item.product.name }}</h2>
+        <p>
+          {{ item.qty }} (Qty). • $
+          <span *ngIf="!item.variation">{{ item.product.price }}</span>
+          <span *ngIf="!item.variation">{{ item.product.weight }} Kg</span>
+          <!-- <span *ngIf="item.variation">{{ item.variation.price }}</span>
+          <span style="color: #F3429B;" > {{ item.variation.weight }} Kg</span> *ngIf="item.variation"-->
+        </p>
+
+        <div *ngIf="item.variation">
+          <ion-chip *ngFor="let att of item.variation.attributes">
+            <ion-label>{{ att.option | titlecase }}</ion-label>
+          </ion-chip>
+        </div>
+      </div>      
+      <!-- <ion-button fill="clear" item-right color="danger" (click)="removeFromCart(item, i)">
+        <ion-icon name="close-circle"></ion-icon>
+      </ion-button> -->
+
+      <ion-row class="ion-no-padding">
+        <ion-col size="12" size-xs>
+          <ion-button  fill="clear" color="tertiary" (click)="changeQty(item, i, -1)">
+            <ion-icon slot="icon-only" name="remove-circle"></ion-icon>
+          </ion-button>
+          <ion-button fill="clear" color="tertiary"> {{ item.qty }} </ion-button>
+          <ion-button  fill="clear" color="tertiary" (click)="changeQty(item, i, 1)">
+            <ion-icon slot="icon-only" name="add-circle"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+    </div>
+
+    
+      <ion-row class="ion-no-padding">
+        <ion-col size="8" size-md>
+          <ion-button  fill="clear" color="tertiary" (click)="changeQty(item, i, -1)">
+            <ion-icon slot="icon-only" name="remove-circle"></ion-icon>
+          </ion-button>
+          <ion-button fill="clear" color="tertiary"> {{ item.qty }} </ion-button>
+          <ion-button  fill="clear" color="tertiary" (click)="changeQty(item, i, 1)">
+            <ion-icon slot="icon-only" name="add-circle"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <ion-col size="4" size-md>
+          <ion-icon (click)="removeFromCart(item, i)" name="trash-outline"></ion-icon>
+          <!-- <ion-button size="small" fill="outline" (click)="removeFromCart(item, i)" color="tertiary">Eliminar</ion-button> -->
+        </ion-col>
+      </ion-row>
+    
+  </div>
+
+
+  <!-- <ion-item>
+    <ion-label>Método de Envios</ion-label>
+    <ion-select [(ngModel)]="selectedVal">
+      <ion-select-option *ngFor="let m of metodosEnvio" value="{{m.id}}">{{ m.title }}</ion-select-option>
+    </ion-select>
+  </ion-item> -->
+
+
+  <ion-grid>
+    
+      <ion-grid>
+        <ion-row>
+          <ion-col size="2">
+
+          </ion-col>
+          <ion-col size="4">
+            <b>TOTAL</b>
+          </ion-col>
+          <ion-col size="3">
+
+          </ion-col>
+          <ion-col size="3">
+            <b> $ {{ total }} </b>
+          </ion-col>
+
+
+        </ion-row>
+      </ion-grid>
+    
+  </ion-grid>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-button style="color:#0250c5;" fill="outline" expand="block" (click)="closeModal()">Atrás</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button id="button" expand="block" (click)="checkout()">Verificar</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>

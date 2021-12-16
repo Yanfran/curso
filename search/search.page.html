@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="primary"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ searchQuery }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ion-padding">
+  <ion-list *ngIf="products">
+    <ion-item *ngFor="let product of products" class="ion-text-wrap" (click)="openProductPage(product)">
+      <ion-thumbnail slot="start">
+        <img *ngIf="product.images.length != 0" [src]="product.images[0].src" />
+      </ion-thumbnail>
+
+      <div>
+        <!-- <h5> {{ product.name }} </h5> -->
+        <p class="ellipsis2"> {{ product.name }} </p>
+              
+        <div>
+          <p>
+            <span [innerHTML]="product.short_description.substr(0, 50) + '...'"></span>
+            <span class="price" [innerHTML]="product.price_html"></span>
+            <span *ngIf="product.average_rating >= 1">
+              <ion-icon style="color: #d4af37" size="small" name="star"></ion-icon>
+            </span>
+            <span *ngIf="product.average_rating >= 2">
+              <ion-icon style="color: #d4af37" size="small" name="star"></ion-icon>
+            </span>
+            <span *ngIf="product.average_rating >= 3">
+              <ion-icon style="color: #d4af37" size="small" name="star"></ion-icon>
+            </span>
+            <span *ngIf="product.average_rating >= 4">
+              <ion-icon style="color: #d4af37" size="small" name="star"></ion-icon>
+            </span>
+            <span *ngIf="product.average_rating >= 5">
+              <ion-icon style="color: #d4af37" size="small" name="star"></ion-icon>
+            </span>
+          </p>
+        </div>
+      </div>
+
+      <!-- <ion-button fill="clear" slot="end">
+        <ion-icon name="arrow-forward"></ion-icon>
+      </ion-button> -->
+    </ion-item>        
+  </ion-list>
+
+
+
+  <!-- NO ITEMS FOUND -->
+  
+  <ion-item *ngIf="products.length <= 0" lines="none">
+    <ion-label>
+      <h3>No hay resultados para esta busqueda.</h3>
+    </ion-label>
+  </ion-item>
+
+
+
+   <ion-infinite-scroll (ionInfinite)="loadMoreProducts($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

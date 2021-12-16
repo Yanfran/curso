@@ -1,0 +1,28 @@
+<ion-menu side="end" menuId="menuCategory" contentId="categorias">
+  <ion-header class="ion-no-border">
+    <ion-toolbar class="toolbar-category">
+      <ion-icon class="icon" slot="start" name="options-outline"></ion-icon>
+      <ion-title>Categorias</ion-title>
+
+      <ion-buttons slot="end">
+        <ion-button (click)="closeMenu()">
+          <ion-icon slot="icon-only" name="close"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="menu-category">
+    <div id="faq">
+    <ul *ngFor="let category of categories2">
+      <li *ngIf="category.parent==0 && category.count > 0" class="ion-text-wrap"><input type="checkbox" checked>
+        <i></i>
+        <h2 (click)="openCategoryPage(category)">{{ category.name }}</h2>
+        <div (click)="openCategoryPage(category)" id="div" *ngFor="let sub of category.subCategories">
+          <p >{{ sub.name }}</p>        
+        </div>
+      </li>     
+    </ul>
+  </div>
+  </ion-content>
+</ion-menu>

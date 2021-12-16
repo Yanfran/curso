@@ -1,0 +1,46 @@
+<ion-header class="ion-no-padding">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="home()" color="primary">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>        
+      </ion-button>
+    </ion-buttons>
+    <!-- <ion-buttons slot="end">
+      <ion-button>Sign Up</ion-button>
+    </ion-buttons> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div id="header">
+      <h1>Login</h1>
+      <img src="./assets/images/usuario-3.png" />
+    
+  </div>
+
+  <!-- <ion-list>
+    <ion-item>
+      <ion-label position="floating">Username</ion-label>
+      <ion-input type="text" [(ngModel)]="username"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Password</ion-label>
+      <ion-input type="password" [(ngModel)]="password"></ion-input>
+    </ion-item>
+  </ion-list> -->
+
+  <ion-list id="form">
+      <div id="input-1">
+        <!-- <ion-label position="floating">Username</ion-label> -->
+        <ion-input placeholder="Email" type="text" [(ngModel)]="username"></ion-input>
+      </div>
+      <div id="input-2">
+        <!-- <ion-label position="floating">Password</ion-label> -->
+        <ion-input placeholder="Password" type="password" [(ngModel)]="password"></ion-input>
+      </div>
+    
+  </ion-list>
+
+  <ion-button id="boton" fill="clear" expand="block" shape="round" (click)="login()">Login</ion-button>
+  <ion-button fill="clear" expand="block" (click)="signup()">¿No tiene cuenta? Registrate aquí</ion-button>
+</ion-content>

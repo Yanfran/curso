@@ -20,7 +20,13 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     public router: Router
-  ) {}
+  ) {
+    this.hola();
+  }
+
+  hola(){
+    alert("Hola yan");
+  }
 
   initializeApp() {
     this.platform.ready().then(() => {

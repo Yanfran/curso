@@ -1,0 +1,29 @@
+<ion-footer>
+  <div class="seg">
+      <ion-segment class="sm" color="secondary">
+        <ion-segment-button value="home" (click)="irEnlace('home')">
+          <!-- <ion-avatar> -->
+            <div class="container">
+              <div class="avatar">
+                <img class="imagen" src="./assets/images/chiveneExpress2.png" /> 
+              </div>
+            </div>
+          <!-- </ion-avatar> -->
+          <!-- <ion-icon class="ic" name="home"></ion-icon>    
+          <ion-label class="ct">Home</ion-label> -->
+        </ion-segment-button>
+        <ion-segment-button value="preguntas" (click)="irEnlace('preguntas-frecuentes')">    
+          <ion-icon class="ic" name="chatbubble-ellipses-outline"></ion-icon>
+          <ion-label class="ct">Preguntas</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="ordenes" routerLink="/orders">
+          <ion-icon class="ic" name="list-outline"></ion-icon>    
+          <ion-label class="ct">Pedidos</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="wishlist" routerLink="/wishlist">
+          <ion-icon class="ic" name="heart-outline"></ion-icon>        
+          <ion-label class="ct">Wish List</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+  </div>
+</ion-footer>

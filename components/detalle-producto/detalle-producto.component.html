@@ -1,0 +1,137 @@
+<ion-header>
+  <ion-toolbar style="background: gainsboro;">
+    <ion-buttons slot="start">
+      
+      <ion-item (click)="close()">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-item>
+
+    </ion-buttons>
+    <ion-title>{{ name }}</ion-title>
+    <ion-badge id="cantidad" color="secondary" slot="end">
+      <div>
+        <ion-icon name="cart-outline"></ion-icon>
+        <ion-badge id="number" color="warning">{{ cuentaCarro  }}</ion-badge>
+      </div>
+    </ion-badge>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-fab horizontal="end" vertical="top" edge (click)="openCart()">
+    <ion-fab color="danger"><ion-icon name="cart"></ion-icon></ion-fab>
+  </ion-fab>
+
+  <!-- <ion-card> -->
+    <ion-slides style="margin-top: 50px;" autoplay="3000" loop="true">
+      <ion-slide *ngFor="let im of images">
+        <img [src]="im.src" style="width: 100%; height:350px;"/>
+      </ion-slide>
+    </ion-slides>
+
+    <div id="cont">
+      <h3 id="h3"><span [innerHTML]="precio2"></span> &nbsp;</h3>
+      <p id="p">{{ peso }} Kg</p>             
+    </div>
+
+    <p id="nombre">{{ name }} &nbsp;</p>   
+
+    <div class="chip-category" *ngFor="let ct of categorias">
+      <ion-chip>
+        <ion-label style="color:#F3429B; font-size: 13px;"> {{ ct.name }} </ion-label> <!--color="primary"-->
+      </ion-chip>
+    </div>      
+
+<ion-card class="ion-no-padding">
+  <div class="tab-group">
+    <div class="tab" *ngIf="descripcion.length > 0">
+      <input type="checkbox" id="tab-one" name="tabs">
+      <label for="tab-one"><p>Descripción</p></label>
+      <div class="tab-content">
+        <p [innerHTML]="descripcion"></p>
+      </div>
+    </div>    
+  </div>
+</ion-card>
+
+
+ 
+
+  <ion-card *ngIf="variaciones.length > 0">
+    <ion-item-divider color="light">Opciones de producto</ion-item-divider>
+    <ng-container *ngFor="let attribute of atributos; let a = index">
+      <ion-item *ngIf="attribute.variation">
+        <ion-label> {{ attribute.name }} </ion-label>
+        <ion-select interface="popover" [(ngModel)]="selectedOptions[attribute.name]" (ionChange)="check(attribute.name)">
+          <ion-select-option *ngFor="let optionX of attribute.options">{{optionX}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ng-container>
+  </ion-card>
+
+  <ion-card *ngIf="atributos.length > 0">
+    <ion-card-content>
+      <ion-card-title>
+        Especificaciones
+      </ion-card-title>
+
+      <ion-grid>
+        <ion-row *ngFor="let att of atributos">
+          <ion-col size="4">
+            {{ att.name}}
+          </ion-col>
+          <ion-col size="8">
+            <span *ngFor="let option of att.options"> {{ option }}</span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+    </ion-card-content>
+  </ion-card>
+
+ <!--  <ion-card *ngIf="reviews.length > 0">
+    <ion-card-content>
+      <ion-card-title>
+        Reseñas
+      </ion-card-title>
+
+      <ion-grid>
+        <ion-row *ngFor="let review of reviews">
+          <ion-col size="4">
+            <b>{{ review.name }}</b><br/>
+            <span *ngIf="review.rating >= 1">
+            <ion-icon style="color: #d4af37" size="small" name="star"></ion-icon>
+          </span>
+            <span *ngIf="review.rating >= 2">
+            <ion-icon style="color: #d4af37" size="small" name="star"></ion-icon>
+          </span>
+            <span *ngIf="review.rating >= 3">
+            <ion-icon style="color: #d4af37" size="small" name="star"></ion-icon>
+          </span>
+            <span *ngIf="review.rating >= 4">
+            <ion-icon style="color: #d4af37" size="small" name="star"></ion-icon>
+          </span>
+            <span *ngIf="review.rating >= 5">
+            <ion-icon style="color: #d4af37" size="small" name="star"></ion-icon>
+          </span>
+
+          </ion-col>
+          <ion-col size="8">
+            {{ review.review }}
+          </ion-col>
+
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card> -->
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button expand="block" shape="round" fill="outline" color="danger" (click)="addToCart(product)">
+      <ion-icon name="basket"></ion-icon> &nbsp; {{ requireOptions ? 'Seleccionar opciones de producto' : 'Agregar al carrito ' + '$' + '' + productPrice}}
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

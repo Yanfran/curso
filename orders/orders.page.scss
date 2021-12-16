@@ -1,0 +1,119 @@
+ion-toolbar{
+  --background: #eaeaf0!important;
+  color: #404040;  
+} 
+ion-content {
+  --background: #eaeaf0!important;
+}
+
+.fullSliding {
+    width: 100%;
+    height: auto;
+}
+
+.centerText {
+    width: 100%;
+    text-align: center;
+}
+
+p {
+    margin-bottom: 0px!important;
+    margin-top: 0px!important;
+}
+
+
+
+// ACONDEON 
+label ion-item {
+    margin: 0;    
+  }
+  label ion-item::before {
+    content: 'Q: ';
+  }
+    .tab-group {
+      // margin: 3em auto;
+      max-width: 503mm;
+      width: 100%;
+    }
+    .tab {
+    //   position: relative;
+      width: 100%;      
+    }
+
+    .tab input {
+      position: absolute;
+      left: 300px;
+      top: 15px;
+    //   opacity: 0;
+
+    }
+
+    .tab label {
+      background: #ffffff;
+      color: #000000;
+      display: block;
+      font-weight: bolder;
+      line-height: 3;
+      padding-left: .5em;
+    //   margin-bottom: .5em; 
+    //   border: 2px dashed #eeeeee;
+    }
+
+    .tap input:focus + label,
+    .tap label:hover {
+      background-color: #85d8ce!important;
+      color: #ffffff!important;
+      transition: .3s!important;
+    }
+    .tab-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: all .5s;
+    }
+
+    .tab-content ion-item {
+      margin: 1em 0;
+      margin-left: 2em;      
+    }
+    .tab input:checked ~ .tab-content {
+      max-height: 100%;
+    }
+
+    
+.menu-header-bg {
+  position: absolute;
+}    
+.menu-header-bg {
+    height: 200px;
+    width: 200px;
+    background: #7590d6;
+    // background: linear-gradient(90deg, #7590d6 0%, #4d71d7 100%);
+    background-image: -webkit-linear-gradient(left, #4facfe, #00f2fe); /* Chrome, Safari versiones relativamente modernas */
+    background-image:    -moz-linear-gradient(left, #4facfe, #00f2fe); /* Firefox versiones relativamente modernas*/
+    background-image:      -o-linear-gradient(left, #4facfe, #00f2fe); /* Opera versiones relativamente modernas*/
+    background-image:         linear-gradient(to left, #4facfe, #00f2fe); /* Chrome, Firefox, IE, Opera versiones actuales */    
+    box-shadow: 0px 1px 10px rgba(98, 140, 255, 0.5);
+    /*transform: rotate(-15deg);*/
+    border-radius: 50%;
+    margin-left: -71px;
+    margin-top: -50px;
+    margin-bottom: -19px;
+  }
+  .card-principal {
+    /*position: absolute;*/
+    /*height: 155px;*/
+  }
+
+ion-item{
+  --ion-color-base: tranparent!important;
+}
+  
+
+
+.ct {
+  text-transform: capitalize!important;
+}
+
+.ic {
+  font-size: 17px!important;
+}

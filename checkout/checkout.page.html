@@ -1,0 +1,202 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="home()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>        
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Verificar</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item-divider color="primary">Detalles personales</ion-item-divider>
+    <ion-item>
+      <ion-label>Primer nombre</ion-label>
+      <ion-input type="text" [(ngModel)]="newOrder.billing.first_name"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Apellido</ion-label>
+      <ion-input type="text" [(ngModel)]="newOrder.billing.last_name"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Correo</ion-label>
+      <ion-input readonly type="email" [(ngModel)]="newOrder.email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Usuario</ion-label>
+      <ion-input readonly type="text" [(ngModel)]="newOrder.username"></ion-input>
+    </ion-item>
+
+    <ion-item-divider color="primary">Detalles de facturación</ion-item-divider>
+
+    <ion-item>
+      <ion-label>Dirección Línea 1</ion-label>
+      <ion-textarea type="text" maxlength="80" [(ngModel)]="newOrder.billing.address_1"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Dirección Línea 2</ion-label>
+      <ion-textarea type="text" maxlength="80" [(ngModel)]="newOrder.billing.address_2"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>País</ion-label>
+      <ion-select value="Venezuela" [(ngModel)]="newOrder.billing.country">
+        <ion-select-option value="Venezuela" selected="true">Venezuela</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Estado</ion-label>
+      <ion-select [(ngModel)]="newOrder.billing.state">
+        <ion-select-option value="Amazonas">Amazonas</ion-select-option>
+        <ion-select-option value="Anzoátegui">Anzoátegui</ion-select-option>
+        <ion-select-option value="Apure">Apure</ion-select-option>
+        <ion-select-option value="Aragua">Aragua</ion-select-option>
+        <ion-select-option value="Barinas">Barinas</ion-select-option>
+        <ion-select-option value="Bolívar">Bolívar</ion-select-option>
+        <ion-select-option value="Carabobo">Carabobo</ion-select-option>
+        <ion-select-option value="Cojedes">Cojedes</ion-select-option>
+        <ion-select-option value="Delta Amacuro">Delta Amacuro</ion-select-option>
+        <ion-select-option value="Distrito Capital" selected="true">Distrito Capital</ion-select-option>
+        <ion-select-option value="Falcón">Falcón</ion-select-option>
+        <ion-select-option value="Guárico">Guárico</ion-select-option>
+        <ion-select-option value="Lara">Lara</ion-select-option>
+        <ion-select-option value="Mérida">Mérida</ion-select-option>
+        <ion-select-option value="Miranda">Miranda</ion-select-option>
+        <ion-select-option value="Monagas">Monagas</ion-select-option>
+        <ion-select-option value="Nueva Esparta">Nueva Esparta</ion-select-option>
+        <ion-select-option value="Portuguesa">Portuguesa</ion-select-option>
+        <ion-select-option value="Sucre">Sucre</ion-select-option>
+        <ion-select-option value="Táchira">Táchira</ion-select-option>
+        <ion-select-option value="Trujillo">Trujillo</ion-select-option>
+        <ion-select-option value="Vargas">Vargas</ion-select-option>
+        <ion-select-option value="Yaracuy">Yaracuy</ion-select-option>
+        <ion-select-option value="Zulia">Zulia</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Ciudad</ion-label>
+      <ion-input type="text" [(ngModel)]="newOrder.billing.city"></ion-input>        
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Código postal</ion-label>
+      <ion-input type="number" clearInput="true" [(ngModel)]="newOrder.billing.postcode"></ion-input>        
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Teléfono</ion-label>
+      <ion-input type="tel" clearInput="true" [(ngModel)]="newOrder.billing.phone"></ion-input>        
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Mismos detalles de envío</ion-label>
+      <ion-checkbox (ionChange)="setBillingToShipping()"></ion-checkbox>
+    </ion-item>
+
+    <ion-item-divider color="primary" *ngIf="!billing_shipping_same">Detalles de envío</ion-item-divider>
+    
+    <ion-item *ngIf="!billing_shipping_same">
+      <ion-label>Primer nombre</ion-label>
+      <ion-input type="text" [(ngModel)]="newOrder.shipping.first_name"></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="!billing_shipping_same">
+      <ion-label>Apellido</ion-label>
+      <ion-input type="text" [(ngModel)]="newOrder.shipping.last_name"></ion-input>
+    </ion-item>
+    
+    <ion-item *ngIf="!billing_shipping_same">
+      <ion-label>Dirección Línea 1</ion-label>
+      <ion-textarea type="text" maxlength="80" [(ngModel)]="newOrder.shipping.address_1"></ion-textarea>
+    </ion-item>
+
+    <ion-item *ngIf="!billing_shipping_same">
+      <ion-label>Dirección Línea 2</ion-label>
+      <ion-textarea type="text" maxlength="80" [(ngModel)]="newOrder.shipping.address_2"></ion-textarea>
+    </ion-item>
+
+    <ion-item *ngIf="!billing_shipping_same">
+      <ion-label>País</ion-label>
+      <ion-select value="Venezuela" [(ngModel)]="newOrder.shipping.country">
+        <ion-select-option value="Venezuela" selected="true">Venezuela</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item *ngIf="!billing_shipping_same">
+      <ion-label>Estado</ion-label>
+      <ion-select [(ngModel)]="newOrder.shipping.state">
+        <ion-select-option value="Amazonas">Amazonas</ion-select-option>
+        <ion-select-option value="Anzoátegui">Anzoátegui</ion-select-option>
+        <ion-select-option value="Apure">Apure</ion-select-option>
+        <ion-select-option value="Aragua">Aragua</ion-select-option>
+        <ion-select-option value="Barinas">Barinas</ion-select-option>
+        <ion-select-option value="Bolívar">Bolívar</ion-select-option>
+        <ion-select-option value="Carabobo">Carabobo</ion-select-option>
+        <ion-select-option value="Cojedes">Cojedes</ion-select-option>
+        <ion-select-option value="Delta Amacuro">Delta Amacuro</ion-select-option>
+        <ion-select-option value="Distrito Capital" selected="true">Distrito Capital</ion-select-option>
+        <ion-select-option value="Falcón">Falcón</ion-select-option>
+        <ion-select-option value="Guárico">Guárico</ion-select-option>
+        <ion-select-option value="Lara">Lara</ion-select-option>
+        <ion-select-option value="Mérida">Mérida</ion-select-option>
+        <ion-select-option value="Miranda">Miranda</ion-select-option>
+        <ion-select-option value="Monagas">Monagas</ion-select-option>
+        <ion-select-option value="Nueva Esparta">Nueva Esparta</ion-select-option>
+        <ion-select-option value="Portuguesa">Portuguesa</ion-select-option>
+        <ion-select-option value="Sucre">Sucre</ion-select-option>
+        <ion-select-option value="Táchira">Táchira</ion-select-option>
+        <ion-select-option value="Trujillo">Trujillo</ion-select-option>
+        <ion-select-option value="Vargas">Vargas</ion-select-option>
+        <ion-select-option value="Yaracuy">Yaracuy</ion-select-option>
+        <ion-select-option value="Zulia">Zulia</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item *ngIf="!billing_shipping_same">
+      <ion-label>Ciudad</ion-label>
+      <ion-input type="text" [(ngModel)]="newOrder.shipping.city"></ion-input>        
+    </ion-item>
+
+    <ion-item *ngIf="!billing_shipping_same">
+      <ion-label>Código postal</ion-label>
+      <ion-input type="number" clearInput="true" [(ngModel)]="newOrder.shipping.postcode"></ion-input>        
+    </ion-item>
+
+    <ion-item *ngIf="!billing_shipping_same">
+      <ion-label>Teléfono</ion-label>
+      <ion-input type="tel" clearInput="true" [(ngModel)]="newOrder.shipping.phone"></ion-input>        
+    </ion-item>
+
+    <ion-item-divider color="primary">Metodos de Envios</ion-item-divider>
+
+    <ion-item>
+      <ion-label>Método de Envios</ion-label>
+      <ion-select [(ngModel)]="selectedVal">
+        <ion-select-option *ngFor="let m of metodosEnvio" value="{{m.id}}">{{ m.title }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item-divider color="primary">Payment Details</ion-item-divider>
+
+    <ion-item>
+      <ion-label>Método de pago</ion-label>
+      <ion-select [(ngModel)]="paymentMethod">
+        <ion-select-option *ngFor="let p of paymentMethods" value="{{p.method_id}}">{{ p.method_title }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+  </ion-list>
+
+</ion-content>
+
+<ion-footer>
+<ion-button expand="block" color="primary" (click)="placeOrder()">Realizar pedido</ion-button>
+</ion-footer>

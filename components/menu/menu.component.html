@@ -1,0 +1,79 @@
+  <div contentId="main-content">    
+    <ion-menu side="start" menuId="menuPrincipal" contentId="principal">
+      <ion-content class="card-background-page">
+        <div class="menu-header-bg"></div>        
+        <div *ngIf="loggedIn" class="header-content">
+            <img src="../assets/images/chiveneExpress.png" alt="">            
+            <label for="">
+              <h3>Bienvenido</h3>
+              <!-- <h2>{{ (this.user.firstname == '' ? this.user.username : this.user.firstname ) || "" }}</h2> -->
+              <h4>{{ (this.user.firstname == '' ? this.user.username : this.user.firstname) || "" }}</h4>
+              <!-- <p>Developers</p> -->
+            </label>
+        </div>
+        <div *ngIf="!loggedIn" class="header-content">
+            <img src="../assets/images/chiveneExpress.png" alt="">            
+            <label for="">              
+              <h4 class="h4">ChiveneExpress</h4>
+              <p></p>
+            </label>
+        </div>
+        <!-- <div class="action-button">
+          <ion-button>
+            <ion-icon slot="start" name="add"></ion-icon> Add Branch
+          </ion-button>
+        </div> -->
+
+        <!-- <ion-card>
+          <img src="./assets/images/BannerMovil.png" /> -->
+          <!-- <div class="card-title">WOOIONIC</div>
+          <div class="card-subtitle">Keep Shopping</div> -->
+        <!-- </ion-card> -->
+
+
+        <ion-list class="menu-items" lines="none">
+          <ion-menu-toggle>
+            <ion-item class="active" [routerLink]="['/home']" routerDirection="forward">
+              <ion-icon name="pie-chart-outline"></ion-icon> <p>Home</p>
+            </ion-item>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle>
+            <ion-item (click)="openPage('signup')" *ngIf="!loggedIn">
+              <ion-icon name="person-outline"></ion-icon> <p>Registro</p>
+            </ion-item>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle>
+            <ion-item (click)="openPage('login')" *ngIf="!loggedIn">
+              <ion-icon name="arrow-redo-outline"></ion-icon> <p>Ingresar</p>
+            </ion-item>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle>
+            <ion-item *ngIf="loggedIn" (click)="openPage('cart')">
+              <ion-icon name="cart-outline"></ion-icon> <p>Su Carrito</p>
+            </ion-item>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle>
+            <ion-item *ngIf="loggedIn" (click)="openPage('orders')">
+              <ion-icon name="reorder-four-outline"></ion-icon> <p>Tus Ordenes</p>
+            </ion-item>
+          </ion-menu-toggle>
+
+          <!-- <ion-menu-toggle>
+            <ion-item (click)="preguntas-frecuentes('preguntas-frecuentes')">
+              <ion-icon name="heart-outline"></ion-icon> <p>Preguntas Frecuentes</p>
+            </ion-item>
+          </ion-menu-toggle> -->
+
+          <ion-menu-toggle>
+            <ion-item *ngIf="loggedIn" (click)="openPage('logout')">
+              <ion-icon name="exit-outline"></ion-icon> <p>Salir</p>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>    
+      </ion-content>
+    </ion-menu>
+  </div>
